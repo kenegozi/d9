@@ -53,7 +53,6 @@
     <Compile Include="AbstractNHibernateDbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="UserTypes\DescribedEnumStringType\ClassWithDescribedEnum.hbm.xml" />
-    <Compile Include="SQLITE.cs" />
     <Compile Include="UserTypes\DescribedEnumStringType\ClassWithDescribedEnum.cs" />
     <Compile Include="UserTypes\DescribedEnumStringType\Colours.cs" />
     <Compile Include="UserTypes\DescribedEnumStringType\ColourTypes.cs" />
