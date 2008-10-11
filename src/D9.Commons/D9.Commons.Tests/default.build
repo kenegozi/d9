@@ -10,7 +10,7 @@
 	<property name="test.db.xpath"
 					 value="/configuration/connectionStrings/add[@name='Rhino.Commons.Test.Properties.Settings.TestDatabase']/@connectionString"/>
 	
-  <include buildfile="${root.dir}/common-project.xml" />
+  <include buildfile="${root.dir}/build-common/common-project.xml" />
 
   <target name="init" depends="common.init">
 
