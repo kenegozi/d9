@@ -1,0 +1,2 @@
+InsertLicenseTask.exe ..
+pause
