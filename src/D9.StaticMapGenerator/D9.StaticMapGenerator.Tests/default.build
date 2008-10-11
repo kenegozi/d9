@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <project
-	name="D9.Commons.Tests"
+	name="D9.StaticMapGenerator.Tests"
 	default="test"
 	xmlns="http://nant.sf.net/release/0.85/nant.xsd"
 >
@@ -17,7 +17,7 @@
     <assemblyfileset id="project.references" basedir="${build.dir}">
       <include name="nunit.framework.dll"/>
       <include name="NUnit.Framework.ExtensionMethods.dll"/>
-      <include name="D9.Commons.dll" />
+      <include name="D9.StaticMapGenerator.dll" />
     </assemblyfileset>
 
   </target>
