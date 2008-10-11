@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+    <class name="D9.NHibernate.Tests.UserTypes.DescribedEnumStringType.ClassWithDescribedEnum, D9.NHibernate.Tests" table="ClassWithDescribedEnum">		
+		<id name="Id" column="id">
+			<generator class="assigned" />
+		</id>
+
+		<property name="Colour" type="D9.NHibernate.Tests.UserTypes.DescribedEnumStringType.ColourTypes, D9.NHibernate.Tests" column="Colour"/>
+	</class>
+</hibernate-mapping>

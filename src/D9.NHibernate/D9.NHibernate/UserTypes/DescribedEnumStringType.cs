@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Data;
 using D9.Commons;
 using NHibernate;
@@ -6,13 +7,23 @@ using NHibernate.Type;
 
 namespace D9.NHibernate.UserTypes
 {
+	/// <summary>
+	/// <c>NHibernate</c> type representing an enum that should be persisted using it's
+	/// <see cref="DescriptionAttribute"/> values
+	/// </summary>
+	/// <typeparam name="T">The enum type</typeparam>
 	public class DescribedEnumStringType<T> : EnumStringType
 		where T : struct 
 	{
+		/// <summary>
+		/// <c>NHibernate</c> type representing an enum that should be persisted using it's
+		/// <see cref="DescriptionAttribute"/> values
+		/// </summary>
 		public DescribedEnumStringType()
 			: base(typeof(T))
 		{
 		}
+
 
 		public override object GetInstance(object code)
 		{

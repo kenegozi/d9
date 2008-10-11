@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5F8CBE77-E6C6-4608-83A7-2FA515474AE9}</ProjectGuid>
+    <ProjectGuid>{18FCCD08-482A-4057-AA77-A88186B3A94E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>D9.Commons.Tests</RootNamespace>
-    <AssemblyName>D9.Commons.Tests</AssemblyName>
+    <RootNamespace>D9.NHibernate.Tests</RootNamespace>
+    <AssemblyName>D9.NHibernate.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,27 +31,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.4.6.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\tools\nunit\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="NUnit.Framework.ExtensionMethods, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\tools\nunitframeworkextensionmethods\NUnit.Framework.ExtensionMethods.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\tools\SQLite\System.Data.SQLite.DLL</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Internal\DescribedEnumHandlerTests.cs" />
+    <Compile Include="AbstractNHibernateDbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UserTypes\DescribedEnumStringType\ClassWithDescribedEnum.hbm.xml" />
+    <Compile Include="SQLITE.cs" />
+    <Compile Include="UserTypes\DescribedEnumStringType\ClassWithDescribedEnum.cs" />
+    <Compile Include="UserTypes\DescribedEnumStringType\Colours.cs" />
+    <Compile Include="UserTypes\DescribedEnumStringType\ColourTypes.cs" />
+    <Compile Include="UserTypes\DescribedEnumStringType\DescribedEnumStringTypeTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\D9.Commons\D9.Commons.csproj">
+    <ProjectReference Include="..\..\D9.Commons\D9.Commons\D9.Commons.csproj">
       <Project>{16B3F92E-17CF-44E8-96DA-4F9534D2415E}</Project>
       <Name>D9.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\D9.NHibernate\D9.NHibernate.csproj">
+      <Project>{C7ECB517-FF81-40C7-9B46-1268CAF26418}</Project>
+      <Name>D9.NHibernate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -62,4 +77,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(SolutionDir)..\lib\log4net.dll" "$(TargetDir)"
+copy "$(SolutionDir)..\lib\Iesi.Collections.dll" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

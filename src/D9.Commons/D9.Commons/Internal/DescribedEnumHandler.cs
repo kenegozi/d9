@@ -16,6 +16,10 @@ namespace D9.Commons.Internal
 
 		private const BindingFlags PUBLIC_STATIC = BindingFlags.Public | BindingFlags.Static;
 
+		/// <summary>
+		/// Creates a new DescribedEnumHandler instance for a given enum type
+		/// </summary>
+		/// <param name="type">The enum type</param>
 		public DescribedEnumHandler(Type type)
 		{
 			var enumEntrys = from f in type.GetFields(PUBLIC_STATIC)
@@ -37,14 +41,25 @@ namespace D9.Commons.Internal
 			}
 		}
 
+		/// <summary>
+		/// Extracts the description for the given enum value.
+		/// <remarks>if no description was set for the given value, it's name will be retrieved</remarks>
+		/// </summary>
+		/// <param name="value">The enum value</param>
+		/// <returns>The value's description</returns>
 		public string GetDescriptionFrom(Enum value)
 		{
 			return toDescription[value];
 		}
 
-		public Enum GetValueFrom(string title)
+		/// <summary>
+		/// Parse the given string and return the enum value for with the given string acts as description
+		/// </summary>
+		/// <param name="description">The given description</param>
+		/// <returns>A matching enum value</returns>
+		public Enum GetValueFrom(string description)
 		{
-			return fromDescription[title];
+			return fromDescription[description];
 		}
 
 	}

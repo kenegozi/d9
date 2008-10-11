@@ -15,11 +15,11 @@ namespace D9.Commons.Tests.Internal
 		[Test]
 		public void GetDescriptionOf_DescribedItem_ReturnsTheDescribedValue()
 		{
-			typeof (DescribedEnum).GetFields();
+			typeof(DescribedEnumeration).GetFields();
 
-			var handler = new DescribedEnumHandler(typeof(DescribedEnum));
+			var handler = new DescribedEnumHandler(typeof(DescribedEnumeration));
 
-			var value = handler.GetDescriptionFrom(DescribedEnum.Value1);
+			var value = handler.GetDescriptionFrom(DescribedEnumeration.Value1);
 			
 			value.Should(Be.EqualTo(VALUE_1_DESCRIPTION));
 		}
@@ -27,9 +27,9 @@ namespace D9.Commons.Tests.Internal
 		[Test]
 		public void GetDescriptionOf_DescribedItemInMixedEnum_ReturnsTheDescribedValue()
 		{
-			var handler = new DescribedEnumHandler(typeof(MixedDescribedEnum));
+			var handler = new DescribedEnumHandler(typeof(MixedDescribedEnumeration));
 
-			var value = handler.GetDescriptionFrom(MixedDescribedEnum.Value1);
+			var value = handler.GetDescriptionFrom(MixedDescribedEnumeration.Value1);
 
 			value.Should(Be.EqualTo(VALUE_1_DESCRIPTION));
 		}
@@ -37,24 +37,24 @@ namespace D9.Commons.Tests.Internal
 		[Test]
 		public void GetDescriptionOf_NonDescribedItemInMixedEnum_ReturnsTheRawValue()
 		{
-			var handler = new DescribedEnumHandler(typeof(MixedDescribedEnum));
+			var handler = new DescribedEnumHandler(typeof(MixedDescribedEnumeration));
 
-			var value = handler.GetDescriptionFrom(MixedDescribedEnum.Value2);
+			var value = handler.GetDescriptionFrom(MixedDescribedEnumeration.Value2);
 
-			value.Should(Be.EqualTo(MixedDescribedEnum.Value2.ToString()));
+			value.Should(Be.EqualTo(MixedDescribedEnumeration.Value2.ToString()));
 		}
 
 		[Test]
 		public void GetDescriptionOf_NonDescribedEnum_ReturnsTheRawValue()
 		{
-			var handler = new DescribedEnumHandler(typeof(NonDescribedEnum));
+			var handler = new DescribedEnumHandler(typeof(NonDescribedEnumeration));
 
-			var value = handler.GetDescriptionFrom(NonDescribedEnum.Value);
+			var value = handler.GetDescriptionFrom(NonDescribedEnumeration.Value);
 
-			value.Should(Be.EqualTo(NonDescribedEnum.Value.ToString()));
+			value.Should(Be.EqualTo(NonDescribedEnumeration.Value.ToString()));
 		}
 		
-		enum DescribedEnum
+		enum DescribedEnumeration
 		{
 			[@Description(VALUE_1_DESCRIPTION)]
 			Value1,
@@ -62,11 +62,11 @@ namespace D9.Commons.Tests.Internal
 			[@Description(VALUE_2_DESCRIPTION)]
 			Value2
 		}
-		enum NonDescribedEnum
+		enum NonDescribedEnumeration
 		{
 			Value
 		}
-		enum MixedDescribedEnum
+		enum MixedDescribedEnumeration
 		{
 			[@Description(VALUE_1_DESCRIPTION)]
 			Value1,

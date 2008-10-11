@@ -9,6 +9,9 @@ using D9.Commons.Internal;
 
 namespace D9.Commons
 {
+	/// <summary>
+	/// Provide access to enum helpers
+	/// </summary>
 	public static class Enums
 	{
 		private static readonly IDictionary handlers = new ListDictionary();
@@ -46,7 +49,7 @@ namespace D9.Commons
 		/// <summary>
 		/// Initialises enum types to be used with the <see cref="Enums"></see>
 		/// </summary>
-		/// <param name="enumTypes">The enum types to initiailse</param>
+		/// <param name="enumTypes">The enum types to initialise</param>
 		public static void Initialise(params Type[] enumTypes)
 		{
 			Initialise((IEnumerable<Type>)enumTypes);
@@ -55,7 +58,7 @@ namespace D9.Commons
 		/// <summary>
 		/// Initialises enum types to be used with the <see cref="Enums"></see>
 		/// </summary>
-		/// <param name="enumTypes">The enum types to initiailse</param>
+		/// <param name="enumTypes">The enum types to initialise</param>
 		public static void Initialise(IEnumerable<Type> enumTypes)
 		{
 			foreach (var type in enumTypes)
@@ -83,7 +86,7 @@ namespace D9.Commons
 		/// </summary>
 		/// <typeparam name="T">The enum type</typeparam>
 		/// <param name="stringValue">The enum value or description</param>
-		/// <returns>An enum value matching the given string value, as description (using <see cref="DescriptionAttribute">DescriptionAttribute</see>) or as value</returns>
+		/// <returns>An enum value matching the given string value, as description (using <see cref="DescriptionAttribute"/>) or as value</returns>
 		public static Enum ToEnum<T>(this string stringValue)
 			where T : struct
 		{
