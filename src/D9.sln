@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D9.NHibernate", "D9.NHibern
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D9.NHibernate.Tests", "D9.NHibernate\D9.NHibernate.Tests\D9.NHibernate.Tests.csproj", "{18FCCD08-482A-4057-AA77-A88186B3A94E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StaticMapGenerator", "StaticMapGenerator", "{191BC30D-76E8-4AF0-B81B-C58805A18D50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D9.StaticMapGenerator", "D9.StaticMapGenerator\D9.StaticMapGenerator\D9.StaticMapGenerator.csproj", "{342FB83F-B14E-4367-ABAD-C206D647F0D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D9.StaticMapGenerator.Tests", "D9.StaticMapGenerator\D9.StaticMapGenerator.Tests\D9.StaticMapGenerator.Tests.csproj", "{5EDD69F5-A789-469C-99E3-75D6EB479A8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +41,14 @@ Global
 		{18FCCD08-482A-4057-AA77-A88186B3A94E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18FCCD08-482A-4057-AA77-A88186B3A94E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18FCCD08-482A-4057-AA77-A88186B3A94E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{342FB83F-B14E-4367-ABAD-C206D647F0D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{342FB83F-B14E-4367-ABAD-C206D647F0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{342FB83F-B14E-4367-ABAD-C206D647F0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{342FB83F-B14E-4367-ABAD-C206D647F0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EDD69F5-A789-469C-99E3-75D6EB479A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EDD69F5-A789-469C-99E3-75D6EB479A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EDD69F5-A789-469C-99E3-75D6EB479A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EDD69F5-A789-469C-99E3-75D6EB479A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +58,7 @@ Global
 		{5F8CBE77-E6C6-4608-83A7-2FA515474AE9} = {1F7FF416-BA63-4878-94E9-0C0600B3A9CB}
 		{C7ECB517-FF81-40C7-9B46-1268CAF26418} = {1795FC27-8F8E-45AF-8F7C-677C2F587936}
 		{18FCCD08-482A-4057-AA77-A88186B3A94E} = {1795FC27-8F8E-45AF-8F7C-677C2F587936}
+		{342FB83F-B14E-4367-ABAD-C206D647F0D9} = {191BC30D-76E8-4AF0-B81B-C58805A18D50}
+		{5EDD69F5-A789-469C-99E3-75D6EB479A8C} = {191BC30D-76E8-4AF0-B81B-C58805A18D50}
 	EndGlobalSection
 EndGlobal
