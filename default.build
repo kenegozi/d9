@@ -10,9 +10,8 @@
 	<fileset id="buildfiles.all">
 		<!-- Files have to be in dependency order -->
 		<include name="src/D9.Commons/default.build" />
-<!--
 		<include name="src/D9.NHibernate/default.build" />
--->
+		<include name="src/D9.StaticMapGenerator/default.build" />
 	</fileset>
 
 	<target name="debug" description="Selects the debug build configuration">
@@ -124,7 +123,7 @@
 		</copy>
 
 		<foreach item="String" delim=" " property="dependency.dir" 
-			in="NHibernate">
+			in="NHibernate log4net">
 			
 			<!-- Copy framework-neutral libraries -->
 			<copy todir="${build.dir}" >

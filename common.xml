@@ -211,13 +211,6 @@
 		<if test="${not property::exists('nunit.found')}">
 			<property name="nunit.found" value="-1" />
 			<exec
-				program="${nunit-console2}" 
-				resultproperty="nunit.found"
-				failonerror="false" />
-
-			<property name="nunit-console" value="${nunit-console2}" if="${nunit.found == '0'}" />
-
-			<exec unless="${nunit.found == '0'}"
 				program="${nunit-console}" 
 				commandline="/help"
 				resultproperty="nunit.found"
