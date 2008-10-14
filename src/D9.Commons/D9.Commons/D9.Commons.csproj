@@ -37,6 +37,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\Hashing.cs" />
+    <Compile Include="Cryptography\HashType.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Internal\DescribedEnumHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
