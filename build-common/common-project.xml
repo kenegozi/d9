@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="rhino.tools" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+<project name="d9" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
 
 	<description>
 		This file contains common tasks tailored specifically for the D9
@@ -14,7 +14,7 @@
 
 		These lines should be placed at the top level under the &lt;project&gt;
 		element. Property root.dir defines a relative path to the root of the
-		distribution, that is, rhino tols directory.
+		distribution, that is, D9 directory.
 
 		After including the file, a target should be defined to initialize
 		configuration variables according to the project being built.
@@ -207,7 +207,7 @@
 		<property overwrite="false" name="assembly.title" value="${project::get-name()} for ${framework::get-description(framework::get-target-framework())}" />
 		<property overwrite="false" name="assembly.version" value="${project.major}.${project.minor}.${project.build}.0" />
 		<property overwrite="false" name="assembly.version.informational" value="${assembly.major}.${assembly.minor}.${assembly.build}.${svn.revision}" />
-		<property overwrite="false" name="assembly.copyright" value="Rhino Tools Project, original author or authors" />
+		<property overwrite="false" name="assembly.copyright" value="D9 Project, original author or authors" />
 		<property overwrite="false" name="assembly.keyfile" value="${key.file}" />
 		<property overwrite="false" name="assembly.sign" value="${sign}" />
 	</target>

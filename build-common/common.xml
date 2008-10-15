@@ -93,7 +93,7 @@
 
 	<target name="set-framework-configuration">
 		<if test="${not(target::exists('set-'+framework::get-target-framework()+'-framework-configuration'))}">
-			<fail message="The '${framework::get-target-framework()}' framework is not supported by this version of Rhino Tools." />
+			<fail message="The '${framework::get-target-framework()}' framework is not supported by this version of D9." />
 		</if>
 		<property name="csc.keyfile" 	value="" />
 		<property name="csc.args" 		value="" />
