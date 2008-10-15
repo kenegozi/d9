@@ -153,7 +153,6 @@ namespace D9.QuerySpecBuilder.Builder
 
 		const string ROWNUM_FIELD = "QUERY_BUILDER_ROWNUM_FIELD";
 		const string INTERNAL_QUERY = "QUERY_BUILDER_INTERNAL_QUERY";
-		internal QueryBuilder Wrapper;
 
 		class LimitInfo
 		{
