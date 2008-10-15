@@ -51,60 +51,6 @@ namespace D9.Commons
 			handler = new DescribedEnumHandler<T>();
 		}
 
-
-		//private static readonly IDictionary handlers = new ListDictionary();
-		/*
-		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enum"></see>
-		/// </summary>
-		/// <param name="assemblies">The assemblies to grab described enums from</param>
-		public static void Initialise(params Assembly[] assemblies)
-		{
-			Initialise((IEnumerable<Assembly>)assemblies);
-		}
-
-		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enum"></see>
-		/// </summary>
-		/// <param name="assemblies">The assemblies to grab described enums from</param>
-		public static void Initialise(IEnumerable<Assembly> assemblies)
-		{
-			var enums = from assembly in assemblies
-							  select assembly
-								  into a
-								  from type in a.GetTypes()
-
-								  where type.IsEnum &&
-										(from f in type.GetFields()
-										 where f.GetCustomAttributes(typeof(DescriptionAttribute), false).Length == 1
-										 select f
-										).Count() > 0
-								  orderby type.FullName
-								  select type;
-			Initialise(enums);
-		}
-
-		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enum"></see>
-		/// </summary>
-		/// <param name="enumTypes">The enum types to initialise</param>
-		public static void Initialise(params Type[] enumTypes)
-		{
-			Initialise((IEnumerable<Type>)enumTypes);
-		}
-
-		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enum"></see>
-		/// </summary>
-		/// <param name="enumTypes">The enum types to initialise</param>
-		public static void Initialise(IEnumerable<Type> enumTypes)
-		{
-			foreach (var type in enumTypes)
-			{
-				handlers.Add(type, new DescribedEnumHandler(type));
-			}
-		}
-		*/
 		/// <summary>
 		/// Extract the description for a given enum value
 		/// </summary>
