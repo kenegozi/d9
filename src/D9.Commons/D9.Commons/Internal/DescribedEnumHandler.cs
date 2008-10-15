@@ -39,19 +39,19 @@ namespace D9.Commons.Internal
 	/// <summary>
 	/// Used to cache enum values descriptions mapper
 	/// </summary>
-	public class DescribedEnumHandler
+	public class DescribedEnumHandler<T>
 	{
-		private readonly IDictionary<Enum, string> toDescription = new Dictionary<Enum, string>();
-		private readonly IDictionary<string, Enum> fromDescription = new Dictionary<string, Enum>();
+		private readonly IDictionary<T, string> toDescription = new Dictionary<T, string>();
+		private readonly IDictionary<string, T> fromDescription = new Dictionary<string, T>();
 
 		private const BindingFlags PUBLIC_STATIC = BindingFlags.Public | BindingFlags.Static;
 
 		/// <summary>
 		/// Creates a new DescribedEnumHandler instance for a given enum type
 		/// </summary>
-		/// <param name="type">The enum type</param>
-		public DescribedEnumHandler(Type type)
+		public DescribedEnumHandler()
 		{
+			var type = typeof (T);
 			var enumEntrys = from f in type.GetFields(PUBLIC_STATIC)
 			                 let attributes = f.GetCustomAttributes(typeof (DescriptionAttribute), false)
 			                 let description =
@@ -60,7 +60,7 @@ namespace D9.Commons.Internal
 			                 		: f.Name
 			                 select new
 			                        	{
-			                        		Value = (Enum) Enum.Parse(type, f.Name),
+			                        		Value = (T) Enum.Parse(type, f.Name),
 			                        		Description = description
 			                        	};
 
@@ -77,7 +77,7 @@ namespace D9.Commons.Internal
 		/// </summary>
 		/// <param name="value">The enum value</param>
 		/// <returns>The value's description</returns>
-		public string GetDescriptionFrom(Enum value)
+		public string GetDescriptionFrom(T value)
 		{
 			return toDescription[value];
 		}
@@ -87,7 +87,7 @@ namespace D9.Commons.Internal
 		/// </summary>
 		/// <param name="description">The given description</param>
 		/// <returns>A matching enum value</returns>
-		public Enum GetValueFrom(string description)
+		public T GetValueFrom(string description)
 		{
 			return fromDescription[description];
 		}

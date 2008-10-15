@@ -30,8 +30,6 @@
 
 using System;
 using System.Collections;
-using D9.Commons;
-using D9.Commons.Internal;
 using NHibernate;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
@@ -41,12 +39,6 @@ namespace D9.NHibernate.Tests.UserTypes.DescribedEnumStringType
 	[TestFixture]
 	public class DescribedEnumStringTypeTests : AbstractNHibernateDbTest
 	{
-		public override void TestFixtureSetUp()
-		{
-			base.TestFixtureSetUp();
-			Enums.Initialise(typeof(Colours));
-		}
-
 		[Test]
 		public void A()
 		{

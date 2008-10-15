@@ -33,52 +33,67 @@ using NUnit.Framework;
 using NUnit.Framework.ExtensionMethods;
 using Description = System.ComponentModel.DescriptionAttribute;
 
-namespace D9.Commons.Tests.Internal
+namespace D9.Commons.Tests
 {
 	// ReSharper disable AccessToStaticMemberViaDerivedType
 	[TestFixture]
-	public class DescribedEnumHandlerTests
+	public class EnumTests
 	{
 		[Test]
-		public void GetDescriptionOf_DescribedItem_ReturnsTheDescribedValue()
+		public void TwoDifferentEnumerations_WorksWithoutInterfering()
 		{
-			var handler = new DescribedEnumHandler<EnumTests.DescribedEnumeration>();
+			var value1 = Enum<DescribedEnumeration>.From(VALUE_1_DESCRIPTION);
+			var value4 = Enum<TotallyDifferentEnumeration>.From(VALUE_4_DESCRIPTION);
 
-			var value = handler.GetDescriptionFrom(EnumTests.DescribedEnumeration.Value1);
-
-			value.Should(Be.EqualTo(EnumTests.VALUE_1_DESCRIPTION));
-		}
-
-
-		[Test]
-		public void GetDescriptionOf_DescribedItemInMixedEnum_ReturnsTheDescribedValue()
-		{
-			var handler = new DescribedEnumHandler<EnumTests.MixedDescribedEnumeration>();
-
-			var value = handler.GetDescriptionFrom(EnumTests.MixedDescribedEnumeration.Value1);
-
-			value.Should(Be.EqualTo(EnumTests.VALUE_1_DESCRIPTION));
+			value1.Should(Be.EqualTo(DescribedEnumeration.Value1));
+			value4.Should(Be.EqualTo(TotallyDifferentEnumeration.Value4));
 		}
 
 		[Test]
-		public void GetDescriptionOf_NonDescribedItemInMixedEnum_ReturnsTheRawValue()
+		public void TwoSimilarEnumerations_WorksWithoutInterfering()
 		{
-			var handler = new DescribedEnumHandler<EnumTests.MixedDescribedEnumeration>();
+			var value1FromEnum1 = Enum<DescribedEnumeration>.From(VALUE_1_DESCRIPTION);
+			var value1FromEnum2 = Enum<MixedDescribedEnumeration>.From(VALUE_1_DESCRIPTION);
 
-			var value = handler.GetDescriptionFrom(EnumTests.MixedDescribedEnumeration.Value2);
-
-			value.Should(Be.EqualTo(EnumTests.MixedDescribedEnumeration.Value2.ToString()));
+			value1FromEnum1.Should(Be.EqualTo(DescribedEnumeration.Value1));
+			value1FromEnum2.Should(Be.EqualTo(MixedDescribedEnumeration.Value1));
 		}
 
-		[Test]
-		public void GetDescriptionOf_NonDescribedEnum_ReturnsTheRawValue()
+		#region enum declerations
+		public const string VALUE_1_DESCRIPTION = "Value1";
+		public const string VALUE_2_DESCRIPTION = "Value2";
+		public const string VALUE_3_DESCRIPTION = "Value3";
+		public const string VALUE_4_DESCRIPTION = "Value4";
+
+		public enum DescribedEnumeration
 		{
-			var handler = new DescribedEnumHandler<EnumTests.NonDescribedEnumeration>();
+			[@Description(VALUE_1_DESCRIPTION)]
+			Value1,
 
-			var value = handler.GetDescriptionFrom(EnumTests.NonDescribedEnumeration.Value);
-
-			value.Should(Be.EqualTo(EnumTests.NonDescribedEnumeration.Value.ToString()));
+			[@Description(VALUE_2_DESCRIPTION)]
+			Value2
 		}
-		
+		public enum NonDescribedEnumeration
+		{
+			Value
+		}
+		public enum MixedDescribedEnumeration
+		{
+			[@Description(VALUE_1_DESCRIPTION)]
+			Value1,
+
+			Value2
+		}
+		public enum TotallyDifferentEnumeration
+		{
+			[@Description(VALUE_3_DESCRIPTION)]
+			Value3,
+
+			[@Description(VALUE_4_DESCRIPTION)]
+			Value4
+		}
+
+		#endregion
+
 	}
 }

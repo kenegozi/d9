@@ -29,12 +29,7 @@
 #endregion License
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
 using D9.Commons.Internal;
 
 namespace D9.Commons
@@ -42,12 +37,25 @@ namespace D9.Commons
 	/// <summary>
 	/// Provide access to enum helpers
 	/// </summary>
-	public static class Enums
+	public static class Enum<T>
 	{
-		private static readonly IDictionary handlers = new ListDictionary();
+		private static readonly Type enumType;
+		private static readonly DescribedEnumHandler<T> handler;
 
+		static Enum()
+		{
+			enumType = typeof (T);
+			if (enumType.IsEnum == false)
+				throw new ArgumentException(string.Format("{0} is not an enum", enumType));
+
+			handler = new DescribedEnumHandler<T>();
+		}
+
+
+		//private static readonly IDictionary handlers = new ListDictionary();
+		/*
 		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enums"></see>
+		/// Initialises enum types to be used with the <see cref="Enum"></see>
 		/// </summary>
 		/// <param name="assemblies">The assemblies to grab described enums from</param>
 		public static void Initialise(params Assembly[] assemblies)
@@ -56,7 +64,7 @@ namespace D9.Commons
 		}
 
 		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enums"></see>
+		/// Initialises enum types to be used with the <see cref="Enum"></see>
 		/// </summary>
 		/// <param name="assemblies">The assemblies to grab described enums from</param>
 		public static void Initialise(IEnumerable<Assembly> assemblies)
@@ -77,7 +85,7 @@ namespace D9.Commons
 		}
 
 		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enums"></see>
+		/// Initialises enum types to be used with the <see cref="Enum"></see>
 		/// </summary>
 		/// <param name="enumTypes">The enum types to initialise</param>
 		public static void Initialise(params Type[] enumTypes)
@@ -86,7 +94,7 @@ namespace D9.Commons
 		}
 
 		/// <summary>
-		/// Initialises enum types to be used with the <see cref="Enums"></see>
+		/// Initialises enum types to be used with the <see cref="Enum"></see>
 		/// </summary>
 		/// <param name="enumTypes">The enum types to initialise</param>
 		public static void Initialise(IEnumerable<Type> enumTypes)
@@ -96,36 +104,25 @@ namespace D9.Commons
 				handlers.Add(type, new DescribedEnumHandler(type));
 			}
 		}
-
+		*/
 		/// <summary>
 		/// Extract the description for a given enum value
 		/// </summary>
 		/// <param name="value">An enum value</param>
 		/// <returns>It's description, or it's name if there's no registered description for the given value</returns>
-		public static string GetDescriptionOf(object value)
+		public static string GetDescriptionOf(T value)
 		{
-			var handler = handlers[value.GetType()] as DescribedEnumHandler;
-
-			return handler != null
-				? handler.GetDescriptionFrom((Enum)value)
-				: value.ToString();
+			return handler.GetDescriptionFrom(value);
 		}
 
 		/// <summary>
 		/// Gets the enum value for a given description or value
 		/// </summary>
-		/// <typeparam name="T">The enum type</typeparam>
-		/// <param name="stringValue">The enum value or description</param>
+		/// <param name="descriptionOrName">The enum value or description</param>
 		/// <returns>An enum value matching the given string value, as description (using <see cref="DescriptionAttribute"/>) or as value</returns>
-		public static Enum ToEnum<T>(this string stringValue)
-			where T : struct
+		public static T From(string descriptionOrName)
 		{
-			var type = typeof(T);
-			var handler = handlers[type] as DescribedEnumHandler;
-
-			return handler != null
-				? handler.GetValueFrom(stringValue)
-				: (Enum)Enum.Parse(type, stringValue, false);
+			return handler.GetValueFrom(descriptionOrName);
 		}
 	}
 }

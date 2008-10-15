@@ -87,12 +87,12 @@ namespace D9.NHibernate.UserTypes
 
 		static object FromString(string value)
 		{
-			return value.ToEnum<T>();
+			return Enum<T>.From(value);
 		}
 
 		static string GetDescriptionOf(T value)
 		{
-			return Enums.GetDescriptionOf(value);
+			return Enum<T>.GetDescriptionOf(value);
 		}
 
 	}
