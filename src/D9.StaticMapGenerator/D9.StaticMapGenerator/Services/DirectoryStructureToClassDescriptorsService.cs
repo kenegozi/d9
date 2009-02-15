@@ -28,6 +28,7 @@
 
 #endregion License
 
+using System;
 using System.Collections.Generic;
 using D9.StaticMapGenerator.DirectoryStructure;
 using D9.StaticMapGenerator.GeneratedClassMetadata;
@@ -93,13 +94,17 @@ namespace D9.StaticMapGenerator.Services
 		static string Normalize(string url)
 		{
 			string candidate = url
+				.Replace(' ', '_')
 				.Replace('/', '_')
 				.Replace('-', '_')
 				.Replace('.', '_');
 
-			while (cSharp.IsValidIdentifier(candidate) == false)
+			if (cSharp.IsValidIdentifier(candidate) == false)
 				candidate = "_" + candidate;
 
+			if (cSharp.IsValidIdentifier(candidate) == false)
+				throw new Exception(string.Format("Could not make {0} into a valid csharp identifier", url));
+			
 			return candidate;
 		}
 

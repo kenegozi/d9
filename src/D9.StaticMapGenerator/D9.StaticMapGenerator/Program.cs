@@ -96,17 +96,27 @@ namespace D9.StaticMapGenerator
 			
 			IBuildDirectoryStructureService buildDirectoryStructureService = IoC.Resolve<IBuildDirectoryStructureService>();
 			
-			IDirInfo site = buildDirectoryStructureService.Execute(dirPath, ignore);
+			Console.WriteLine("Working on " + dirPath);
 
+			Console.Write("Building directory structure ... ");
+			IDirInfo site = buildDirectoryStructureService.Execute(dirPath, ignore);
+			Console.WriteLine("Done");
+
+			Console.Write("Removing empty directories ... ");
 			site.RemoveEmptyDirectories();
+			Console.WriteLine("Done");
 			
 			IDirectoryStructureToClassDescriptorsService directoryStructureToClassDescriptorsService = IoC.Resolve<IDirectoryStructureToClassDescriptorsService>();
 
+			Console.Write("Extracting class descriptors ... ");
 			ClassDescriptor[] classDescriptors = directoryStructureToClassDescriptorsService.Execute(site);
+			Console.WriteLine("Done");
 
 			IDescriptorsToClassesService descriptorsToClassesService = IoC.Resolve<IDescriptorsToClassesService>();
 
+			Console.Write("Extracting classes ... ");
 			string[] classes = descriptorsToClassesService.Execute(classDescriptors);
+			Console.WriteLine("Done");
 
 			string generatedClasses = string.Join(Environment.NewLine, classes);
 
@@ -120,8 +130,10 @@ namespace {0}
 {1}
 }}
 ", generatedNamespace, generatedClasses);
-				
+
+			Console.Write("Saving output to {0} ... ", generatedFilePath);
 			File.WriteAllText(generatedFilePath, generatedFile);
+			Console.WriteLine("Done");
 
 		}
 	}
