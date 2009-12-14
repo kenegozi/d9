@@ -66,13 +66,34 @@ namespace D9.Commons.Cryptography
 		/// <returns>Hashed data</returns>
 		public static string HashData(string data, HashType hashType)
 		{
-			var hash = GetHash(hashType);
 			var bytes = (new UnicodeEncoding()).GetBytes(data);
-			var hashed = hash.ComputeHash(bytes);
+			var hashed = HashData(bytes, hashType);
 			var sb = new StringBuilder(64);
 			foreach (var b in hashed)
 				sb.AppendFormat("{0:x2}", b);
 			return sb.ToString();
+		}
+
+		/// <summary>
+		/// Hashing a given binary data using SHA2.
+		/// </summary>
+		/// <param name="data">Data to hash</param>
+		/// <returns>Hashed data</returns>
+		public static byte[] HashData(byte[] data)
+		{
+			return HashData(data, HashType.SHA256);
+		}
+
+		/// <summary>
+		/// Hashing a given binary data with any of the supported hash algorithms.
+		/// </summary>
+		/// <param name="data">Data to hash</param>
+		/// <param name="hashType">Hashing algorithm to use</param>
+		/// <returns>Hashed data</returns>
+		public static byte[] HashData(byte[] data, HashType hashType)
+		{
+			var hash = GetHash(hashType);
+			return hash.ComputeHash(data);
 		}
 
 		private static HashAlgorithm GetHash(HashType hashType)

@@ -39,7 +39,7 @@ namespace D9.Commons.Tests.Cryptography
 	public class HashingTests
 	{
 		[Test]
-		public void Default_Hashing_Is_SHA256()
+		public void DefaultHashing_Is_SHA256()
 		{
 			var data = "THE_DATA_TO_HASH";
 			var usingSha256 = Hashing.HashData(data, HashType.SHA256);
@@ -49,10 +49,34 @@ namespace D9.Commons.Tests.Cryptography
 		}
 
 		[Test]
-		public void Hashing_With_SHA256_Works()
+		public void Hashing_WithSHA256_Works()
 		{
 			var data = "THE_DATA_TO_HASH";
 			var expected = "a63d4e91ab97d567d5230d208bd875bd6757cb38823e9ef66f0012f50b9bdf90";
+			var usingSha256 = Hashing.HashData(data, HashType.SHA256);
+
+			usingSha256.Should(Be.EqualTo(expected));
+		}
+
+		[Test]
+		public void DefaultHashing_WithBinaryData_IsSHA256()
+		{
+			var data = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
+			var usingSha256 = Hashing.HashData(data, HashType.SHA256);
+			var usingDefault = Hashing.HashData(data);
+
+			usingDefault.Should(Be.EqualTo(usingSha256));
+		}
+		
+		[Test]
+		public void HashingBinary_WithSHA256_Works()
+		{
+			var data = new byte[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+			var expected = new byte[]
+			{
+				218, 46, 78, 211, 85, 138, 14, 226, 52, 249, 239, 130, 180, 17, 204, 24, 229, 160, 213, 246, 163, 207, 
+				82, 214, 244, 237, 111, 51, 243, 102, 2, 115
+			};
 			var usingSha256 = Hashing.HashData(data, HashType.SHA256);
 
 			usingSha256.Should(Be.EqualTo(expected));
