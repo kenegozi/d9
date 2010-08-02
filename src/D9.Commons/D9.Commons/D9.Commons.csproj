@@ -37,10 +37,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\FriendlyDictionary.cs" />
     <Compile Include="Cryptography\Hashing.cs" />
     <Compile Include="Cryptography\HashType.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Internal\DescribedEnumHandler.cs" />
+    <Compile Include="Locks\Lock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

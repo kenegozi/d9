@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\FriendlyDictionaryTests.cs" />
     <Compile Include="Cryptography\HashingTests.cs" />
     <Compile Include="EnumTests.cs" />
     <Compile Include="Internal\DescribedEnumHandlerTests.cs" />
