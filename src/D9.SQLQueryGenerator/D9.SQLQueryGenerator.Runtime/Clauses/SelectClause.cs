@@ -1,6 +1,6 @@
 #region License
 
-// Copyright (c) 2008 Ken Egozi (ken@kenegozi.com)
+// Copyright (c) 2008-2010 Ken Egozi (ken@kenegozi.com)
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without modification,
