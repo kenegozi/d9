@@ -89,8 +89,14 @@ namespace D9.Commons.Internal
 		/// <returns>A matching enum value</returns>
 		public T GetValueFrom(string description)
 		{
-			return fromDescription[description];
-		}
-
-	}
+            try
+            {
+                return fromDescription[description];
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(string.Format("Could not find the value '{0}' in the description attributes of enum type '{1}'", description, typeof(T).Name), ex);
+            }
+        }
+    }
 }
